@@ -1,0 +1,224 @@
+{
+  "info": {
+    "name": "Orders Management API",
+    "description": "Complete collection for testing Orders API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Create Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customer_name\": \"John Doe\",\n  \"product\": \"Laptop Pro 15\\\"\",\n  \"quantity\": 2,\n  \"amount\": 2999.98,\n  \"status\": \"pending\",\n  \"order_date\": \"2026-02-07\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/orders",
+          "host": ["{{base_url}}"],
+          "path": ["orders"]
+        }
+      }
+    },
+    {
+      "name": "Get All Orders (Default Pagination)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders",
+          "host": ["{{base_url}}"],
+          "path": ["orders"]
+        }
+      }
+    },
+    {
+      "name": "Get Orders - Custom Pagination",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders?page=2&limit=5",
+          "host": ["{{base_url}}"],
+          "path": ["orders"],
+          "query": [
+            {
+              "key": "page",
+              "value": "2"
+            },
+            {
+              "key": "limit",
+              "value": "5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Orders - Filter by Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders?status=completed",
+          "host": ["{{base_url}}"],
+          "path": ["orders"],
+          "query": [
+            {
+              "key": "status",
+              "value": "completed"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Orders - Filter by Amount Range",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders?minAmount=500&maxAmount=2000",
+          "host": ["{{base_url}}"],
+          "path": ["orders"],
+          "query": [
+            {
+              "key": "minAmount",
+              "value": "500"
+            },
+            {
+              "key": "maxAmount",
+              "value": "2000"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Orders - Filter by Date Range",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders?startDate=2026-01-01&endDate=2026-01-31",
+          "host": ["{{base_url}}"],
+          "path": ["orders"],
+          "query": [
+            {
+              "key": "startDate",
+              "value": "2026-01-01"
+            },
+            {
+              "key": "endDate",
+              "value": "2026-01-31"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Orders - Combined Filters",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders?status=completed&minAmount=500&startDate=2026-01-01&page=1&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["orders"],
+          "query": [
+            {
+              "key": "status",
+              "value": "completed"
+            },
+            {
+              "key": "minAmount",
+              "value": "500"
+            },
+            {
+              "key": "startDate",
+              "value": "2026-01-01"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Order by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders/1",
+          "host": ["{{base_url}}"],
+          "path": ["orders", "1"]
+        }
+      }
+    },
+    {
+      "name": "Update Order",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"completed\",\n  \"amount\": 3499.99\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/orders/1",
+          "host": ["{{base_url}}"],
+          "path": ["orders", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Order",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders/1",
+          "host": ["{{base_url}}"],
+          "path": ["orders", "1"]
+        }
+      }
+    }
+  ]
+}

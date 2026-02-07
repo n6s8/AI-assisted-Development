@@ -1,0 +1,8 @@
+node_modules/
+.env
+database/*.db
+coverage/
+*.log
+.DS_Store
+COPILOT_METRICS.md
+.env.example
